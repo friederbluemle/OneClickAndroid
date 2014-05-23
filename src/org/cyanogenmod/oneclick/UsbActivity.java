@@ -15,12 +15,14 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 
 public class UsbActivity extends Activity {
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        Analytics.sendEvent(getApplicationContext(), Analytics.TERMS_ACCEPTED);
 
         if (adbIsEnabled()) {
+            Analytics.sendEvent(getApplicationContext(), Analytics.ADB_ALREADY_ENABLED);
             startActivity(new Intent(getBaseContext(), PtpActivity.class));
             finish();
             return;
